@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaPl.SKS.BusinessLogic.Entities\PaPl.SKS.BusinessLogic.Entities.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.BusinessLogic.Interfaces.Exceptions\PaPl.SKS.BusinessLogic.Interfaces.Exceptions.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.BusinessLogic.Interfaces\PaPl.SKS.BusinessLogic.Interfaces.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Webhook.Interfaces\PaPl.SKS.DataAccess.Webhook.Interfaces.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.ServiceAgent\PaPl.SKS.ServiceAgent.csproj" />
+    <ProjectReference Include="..\Repository\PaPl.SKS.DataAccess.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

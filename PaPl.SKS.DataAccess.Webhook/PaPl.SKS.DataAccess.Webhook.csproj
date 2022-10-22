@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Interfaces.Exceptions\PaPl.SKS.DataAccess.Interfaces.Exceptions.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Interface\PaPl.SKS.DataAccess.Interfaces.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Webhook.Interfaces\PaPl.SKS.DataAccess.Webhook.Interfaces.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.Package.Services.DTOs\PaPl.SKS.Package.Services.DTOs.csproj" />
+  </ItemGroup>
+
+</Project>

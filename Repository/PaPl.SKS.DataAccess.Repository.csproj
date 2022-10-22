@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Entity\PaPl.SKS.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Interfaces.Exceptions\PaPl.SKS.DataAccess.Interfaces.Exceptions.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Interface\PaPl.SKS.DataAccess.Interfaces.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Sqls\PaPl.SKS.DataAccess.Sql.csproj" />
+  </ItemGroup>
+
+</Project>

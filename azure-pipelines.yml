@@ -1,0 +1,71 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- MAIN
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'Unit Tests - $(buildConfiguration)'
+  inputs:
+    command: 'test'
+    arguments: '--no-build --configuration $(buildConfiguration) --collect:"XPlat Code Coverage"'
+    publishTestResults: true
+    projects: '**/*.Test.csproj'
+    testRunTitle: 'Unit Tests $(Build.BuildNumber)'
+
+- task: reportgenerator@5
+  displayName: 'Combine code coverage'
+  inputs:
+    reports: '$(Agent.WorkFolder)/**/*.cobertura.xml'
+    targetdir: '$(Build.SourcesDirectory)/CoverageResults'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.SourcesDirectory)/CoverageResults/Cobertura.xml'
+    reportDirectory: '$(Build.SourcesDirectory)/CoverageResults'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: $(build.artifactStagingDirectory) 
+    artifact: WebApp
+
+- task: DotNetCoreCLI@2
+  displayName: 'BuildIntegrationTest'
+  inputs: 
+    command: 'build'
+    projects: 'IntegrationTests/IntegrationTests.csproj'
+    arguments: '--configuration release'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'PublishIntegrationTest'
+  inputs:
+    targetPath: '$(Build.SourcesDirectory)/IntegrationTests/bin/release/net5.0'
+    artifact: 'IntegrationTests'
+
+
+

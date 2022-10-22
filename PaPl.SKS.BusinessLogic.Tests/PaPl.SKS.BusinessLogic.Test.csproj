@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaPl.SKS.BusinessLogic.Interfaces\PaPl.SKS.BusinessLogic.Interfaces.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.BusinessLogic\PaPl.SKS.BusinessLogic.csproj" />
+    <ProjectReference Include="..\PaPl.SKS.DataAccess.Webhook\PaPl.SKS.DataAccess.Webhook.csproj" />
+    <ProjectReference Include="..\Repository\PaPl.SKS.DataAccess.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
